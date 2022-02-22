@@ -1,0 +1,15 @@
+# install.package("MASS")
+library(MASS)
+attach(Boston)
+?Boston
+head(Boston)
+head(Boston,15)
+tail(Boston)
+dim(Boston)
+names(Boston)
+str(Boston)
+nrow(Boston)
+ncol(Boston)
+summary(Boston)
+Boston$crim
+summary(Boston$crim)

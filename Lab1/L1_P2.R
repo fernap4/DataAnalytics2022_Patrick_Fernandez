@@ -35,4 +35,14 @@ boxplot(EPI_data$EPI, EPI_data$DALY)
 
 
 attach(multivariate)
-mm<-lm(Homeowners~Immigrants)
+
+mm <- lm(Homeowners~Immigrants)
+mm <- lm(formula = Homeowners ~ Immigrants)
+mm
+
+plot(Homeowners ~ Immigrants)
+help(abline)
+abline(mm)
+abline(mm, col=3, lwd=3)
+attributes(mm)
+mm$coefficients
