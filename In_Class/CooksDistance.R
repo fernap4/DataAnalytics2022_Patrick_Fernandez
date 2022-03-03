@@ -1,0 +1,43 @@
+mtcars
+head(mtcars)
+str(mtcars)
+model1 <- lm(mpg ~ cyl + wt, data = mtcars)
+model1
+
+help("cooks.distance")
+
+plot(model1, pch=18, col='red', which=c(4))
+
+CooksDistance <- cooks.distance(model1)
+CooksDistance
+round(CooksDistance, 5)
+sort(round(CooksDistance, 5))
+
+
+
+library(ISLR)
+library(dplyr)
+head(Hitters)
+dim(Hitters)
+is.na(Hitters)
+
+HittersData <- na.omit(Hitters)
+dim(HittersData)
+glimpse(HittersData)
+head(HittersData)
+
+SalaryPredictModel1 <- lm(Salary ~., data=HittersData)
+summary(SalaryPredictModel1)
+
+cooksD <- cooks.distance(SalaryPredictModel1)
+influential <- cooksD[(cooksD > (3 * mean(cooksD, na.rem=TRUE)))]
+influential
+
+name_of_infliential <- names(influential)
+name_of_infliential
+outliers <- HittersData[name_of_infliential,]
+Hitters_Without_Outliers <- HittersData %>% anti_join(outliers)
+
+#Model 2 without outliers
+SalaryPredictModel2 <- lm(Salary ~., data=Hitters_Without_Outliers)
+summary(SalaryPredictModel2)
