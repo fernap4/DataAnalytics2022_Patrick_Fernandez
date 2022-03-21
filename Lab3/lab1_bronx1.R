@@ -1,11 +1,7 @@
-library(gdata) 
-#faster xls reader but requires perl!
-bronx1<-read.xls(file.choose(),pattern="BOROUGH",stringsAsFactors=FALSE,sheet=1,perl="<SOMEWHERE>/perl/bin/perl.exe") 
-bronx1<-bronx1[which(bronx1$GROSS.SQUARE.FEET!="0" & bronx1$LAND.SQUARE.FEET!="0" & bronx1$SALE.PRICE!="$0"),]
+install.packages("xlsx")
+library("xlsx")
 
-#alternate
-#library("xlsx", lib.loc="/Library/Frameworks/R.framework/Versions/3.0/Resources/library")
-#bronx1<-read.xlsx("<SOMEWHERE>/rollingsales_bronx.xls",pattern="BOROUGH",stringsAsFactors=FALSE,sheetIndex=1,startRow=5,header=TRUE)
+bronx1<-read.xlsx("~/Documents/DataAnalytics2022_Patrick_Fernandez/Lab3/rollingsales_bronx.xls",pattern="BOROUGH",stringsAsFactors=FALSE,sheetIndex=1,startRow=5,header=TRUE)
 View(bronx1)
 #
 attach(bronx1) # If you choose to attach, leave out the "data=." in lm regression
